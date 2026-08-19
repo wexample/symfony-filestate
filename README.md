@@ -1,6 +1,8 @@
 # symfony-filestate
 
-Version: 1.0.1
+Version: 2.0.0
+
+Rectification rules queried by the Python filestate package
 
 ## Table of Contents
 
@@ -21,6 +23,11 @@ This package is part of the Wexample Suite — a collection of high-quality, mod
 The suite includes packages for configuration management, file handling, prompts, and more. Each package can be used independently or as part of the integrated suite.
 
 Visit the [Wexample Suite documentation](https://docs.wexample.com) for the complete package ecosystem.
+
+## Dependencies
+
+- php: >=8.2
+- wexample/symfony-helpers: >=4.0.0
 
 ## Versioning & Compatibility Policy
 

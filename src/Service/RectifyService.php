@@ -31,6 +31,7 @@ class RectifyService
         foreach ($paths as $path) {
             if (! is_file($path)) {
                 $violations[] = 'missing_file: '.$path;
+
                 continue;
             }
 
