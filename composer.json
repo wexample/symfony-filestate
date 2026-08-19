@@ -1,4 +1,22 @@
 {
   "name": "wexample/symfony-filestate",
-  "version": "1.0.1"
+  "description": "Rectification rules queried by the Python filestate package",
+  "type": "library",
+  "license": "MIT",
+  "version": "1.0.1",
+  "autoload": {
+    "psr-4": {
+      "Wexample\\SymfonyFilestate\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "weeger",
+      "email": "romain.weeger@wexample.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "wexample/symfony-helpers": ">=4.0.0"
+  }
 }

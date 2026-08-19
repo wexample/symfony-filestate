@@ -1,0 +1,12 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    _instanceof:
+        Wexample\SymfonyFilestate\Service\Rule\AbstractRule:
+            tags: [ 'wexample.filestate.rule' ]
+
+    Wexample\SymfonyFilestate\:
+        resource: '../../{Command,Service}'
