@@ -1,8 +1,8 @@
 # symfony-filestate
 
-Version: 2.0.1
+Version: 4.0.0
 
-`symfony-filestate` is a Symfony bundle that acts as the PHP backend for the Python filestate package: it accepts a list of rule names and file paths as JSON on stdin, applies each rule's `rectify()` method to compute what each file's content should be, and returns only the changed files plus a list of violations as JSON on stdout — the bundle never writes to disk itself. Rules extend `AbstractRule` and are auto-wired as Symfony services tagged `wexample.filestate.rule`; the bundle ships one built-in rule, `has_secure_id_trait`, which injects `HasSecureIdTrait` into PHP entity classes that are missing it. It is intended for Symfony applications that enforce source-file conventions through the filestate toolchain, where the Python layer owns all actual writes to disk.
+`symfony-filestate` is a Symfony bundle that acts as the PHP backend for the Python filestate package: it accepts a list of rule names and file paths as JSON on stdin, applies each rule's `rectify()` method to compute what each file's content should be, and returns only the changed files plus a list of violations as JSON on stdout — the bundle never writes to disk itself. Rules extend `AbstractRule` and are auto-wired as Symfony services tagged `wexample.filestate.rule`; the bundle ships no rule of its own. It is intended for Symfony applications that enforce source-file conventions through the filestate toolchain, where the Python layer owns all actual writes to disk.
 
 ## Table of Contents
 
@@ -56,20 +56,13 @@ abstract public function rectify(string $path, string $content): string;
 
 `getName()` returns the string used to request the rule from the Python side. `rectify()` receives the absolute path and the current content; it returns the content as it should be (unchanged if the rule is already satisfied). Rules never touch the filesystem.
 
-#### HasSecureIdTraitRule
-
-src/Service/Rule/HasSecureIdTraitRule.php is the only built-in rule, registered as `has_secure_id_trait`. Given a PHP file that contains a class definition, it:
-
-1. Adds `use Wexample\SymfonyHelpers\Entity\Traits\HasSecureIdTrait;` after the `namespace` statement if the import is absent.
-2. Adds `use HasSecureIdTrait;` inside the class body if the trait is not already used there.
-
-If no class definition is found the file is returned unmodified.
+The bundle ships no rule of its own.
 
 ### Call path
 
 ```
 Python filestate
-  │  stdin: {"rules": ["has_secure_id_trait"], "paths": ["/…/Entity.php"]}
+  │  stdin: {"rules": ["rule_name"], "paths": ["/…/Entity.php"]}
   ▼
 RectifyCommand::execute()
   │  readPayload() → {rules, paths}
@@ -98,7 +91,7 @@ Visit the [Wexample Suite documentation](https://docs.wexample.com) for the comp
 ## Dependencies
 
 - php: >=8.2
-- wexample/symfony-helpers: >=5.0.0
+- wexample/symfony-helpers: >=6.0.0
 
 ## Versioning & Compatibility Policy
 

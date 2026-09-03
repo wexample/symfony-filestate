@@ -40,20 +40,13 @@ abstract public function rectify(string $path, string $content): string;
 
 `getName()` returns the string used to request the rule from the Python side. `rectify()` receives the absolute path and the current content; it returns the content as it should be (unchanged if the rule is already satisfied). Rules never touch the filesystem.
 
-#### HasSecureIdTraitRule
-
-src/Service/Rule/HasSecureIdTraitRule.php is the only built-in rule, registered as `has_secure_id_trait`. Given a PHP file that contains a class definition, it:
-
-1. Adds `use Wexample\SymfonyHelpers\Entity\Traits\HasSecureIdTrait;` after the `namespace` statement if the import is absent.
-2. Adds `use HasSecureIdTrait;` inside the class body if the trait is not already used there.
-
-If no class definition is found the file is returned unmodified.
+The bundle ships no rule of its own.
 
 ### Call path
 
 ```
 Python filestate
-  │  stdin: {"rules": ["has_secure_id_trait"], "paths": ["/…/Entity.php"]}
+  │  stdin: {"rules": ["rule_name"], "paths": ["/…/Entity.php"]}
   ▼
 RectifyCommand::execute()
   │  readPayload() → {rules, paths}
