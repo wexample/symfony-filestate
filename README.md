@@ -1,6 +1,6 @@
 # symfony-filestate
 
-Version: 4.0.0
+Version: 4.0.1
 
 `symfony-filestate` is a Symfony bundle that acts as the PHP backend for the Python filestate package: it accepts a list of rule names and file paths as JSON on stdin, applies each rule's `rectify()` method to compute what each file's content should be, and returns only the changed files plus a list of violations as JSON on stdout — the bundle never writes to disk itself. Rules extend `AbstractRule` and are auto-wired as Symfony services tagged `wexample.filestate.rule`; the bundle ships no rule of its own. It is intended for Symfony applications that enforce source-file conventions through the filestate toolchain, where the Python layer owns all actual writes to disk.
 
@@ -91,7 +91,7 @@ Visit the [Wexample Suite documentation](https://docs.wexample.com) for the comp
 ## Dependencies
 
 - php: >=8.2
-- wexample/symfony-helpers: >=6.0.0
+- wexample/symfony-helpers: >=7.0.0
 
 ## Versioning & Compatibility Policy
 
