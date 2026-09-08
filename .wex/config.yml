@@ -6,5 +6,5 @@ global:
   type: php-package
   version: 4.0.1
 wex:
-  migration: 1
-  version: 6.0.133
+  migration: 2
+  version: 6.0.136
