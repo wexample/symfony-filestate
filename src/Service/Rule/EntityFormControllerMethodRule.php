@@ -84,15 +84,13 @@ class EntityFormControllerMethodRule extends AbstractRule
     }
 PHP;
 
+        $content = $this->declareRouteConstant($content);
+
         // One blank line between members, none right after the class brace.
+        // Measured after the constant, which is a member of its own.
         $glue = preg_match('/\{\s*\n\s*\}\s*$/', $content) ? "\n" : "\n\n";
 
-        return preg_replace(
-            '/\n}\s*$/',
-            $glue.$method."\n}\n",
-            $this->declareRouteConstant($content),
-            1
-        );
+        return preg_replace('/\n\s*}\s*$/', $glue.$method."\n}\n", $content, 1);
     }
 
     /**
@@ -120,9 +118,15 @@ PHP;
             return $content;
         }
 
-        return preg_replace(
-            '/^(\s*(?:final\s+)?class\s+\w+Controller\b[^{]*\{)/m',
-            "$1\n    final public const string ROUTE_EDIT = self::DEFAULT_ROUTE_NAME_EDIT;\n",
+        // Trait imports open a class body, so the constant lands after them
+        // rather than between the brace and the first `use`.
+        return preg_replace_callback(
+            '/^(\s*(?:final\s+)?class\s+\w+Controller\b[^{]*\{)((?:\n[ \t]*use\s+[^;]+;)*)/m',
+            static fn (array $match): string => $match[1]
+                .$match[2]
+                ."\n"
+                .('' === $match[2] ? '' : "\n")
+                ."    final public const string ROUTE_EDIT = self::DEFAULT_ROUTE_NAME_EDIT;\n",
             $content,
             1
         );
