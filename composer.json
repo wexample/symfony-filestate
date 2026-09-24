@@ -3,7 +3,7 @@
   "description": "Rectification rules queried by the Python filestate package",
   "type": "library",
   "license": "MIT",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "autoload": {
     "psr-4": {
       "Wexample\\SymfonyFilestate\\": "src/"
