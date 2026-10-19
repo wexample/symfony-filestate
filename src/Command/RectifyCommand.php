@@ -26,7 +26,7 @@ class RectifyCommand extends AbstractBundleCommand
     public function __construct(
         BundleService $bundleService,
         private readonly RectifyService $rectifyService,
-        string $name = null,
+        ?string $name = null,
     ) {
         parent::__construct($bundleService, $name);
     }
