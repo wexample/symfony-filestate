@@ -1,6 +1,6 @@
 # symfony-filestate
 
-Version: 5.0.10
+Version: 5.1.0
 
 `symfony-filestate` is a Symfony bundle that acts as the PHP backend for the Python filestate package: it accepts a list of rule names and file paths as JSON on stdin, applies each rule's `rectify()` method to compute what each file's content should be, and returns only the changed files plus a list of violations as JSON on stdout — the bundle never writes to disk itself. Rules extend `AbstractRule` and are auto-wired as Symfony services tagged `wexample.filestate.rule`; the bundle ships no rule of its own. It is intended for Symfony applications that enforce source-file conventions through the filestate toolchain, where the Python layer owns all actual writes to disk.
 
@@ -86,12 +86,10 @@ This package is part of the Wexample Suite — a collection of high-quality, mod
 
 The suite includes packages for configuration management, file handling, prompts, and more. Each package can be used independently or as part of the integrated suite.
 
-Visit the [Wexample Suite documentation](https://docs.wexample.com) for the complete package ecosystem.
-
 ## Dependencies
 
 - php: >=8.5
-- wexample/symfony-helpers: >=16.0.0
+- wexample/symfony-helpers: >=17.0.0
 
 ## Versioning & Compatibility Policy
 
@@ -116,6 +114,8 @@ Free to use in both personal and commercial projects.
 This packages suite embodies this spirit. Trusted by professionals and enthusiasts alike, it delivers a consistent, high-quality foundation for modern development — open, elegant, and battle-tested. Its reputation is built on years of collaboration, refinement, and rigorous attention to detail, making it a natural choice for those who demand both robustness and beauty in their tools.
 
 Wexample cultivates a culture of mastery. Each package, each contribution carries the mark of a community that values precision, ethics, and innovation — a community proud to shape the future of digital craftsmanship.
+
+Built and maintained by [Romain Weeger](https://weeger.io).
 
 ## Migration Notes
 
